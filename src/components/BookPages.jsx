@@ -1,6 +1,6 @@
-import React from 'react';
-import { auth, googleProvider, db } from '../firebase'; // Path to your firebase.js
+import React, { useState } from 'react';
 import { signInWithPopup } from "firebase/auth";
+import { auth, googleProvider, db } from "../firebase";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 
 // --- THE FOOLPROOF THEME ENGINE ---
@@ -612,8 +612,12 @@ export const Page = React.forwardRef((props, ref) => {
   const theme = getSubjectTheme(props.subject);
   const ThemeBackground = theme.Background; 
 
+  const [isVoting, setIsVoting] =useState(false);
+
   // --- PLACE handleVote HERE ---
   const handleVote = async () => {
+    setIsVoting(true);
+
     try {
       let user = auth.currentUser;
       
@@ -629,6 +633,7 @@ export const Page = React.forwardRef((props, ref) => {
 
       if (userVoteDoc.exists()) {
         alert("Maaf, Anda sudah memberikan suara sebelumnya!");
+        setIsVoting(false);
         return;
       }
 
@@ -644,7 +649,11 @@ export const Page = React.forwardRef((props, ref) => {
 
     } catch (error) {
       console.error("Error:", error);
-      alert("Terjadi kesalahan. Pastikan koneksi internet Anda lancar.");
+      if (error.code !== 'auth/popup-closed-by-user') {
+        alert("Terjadi kesalahan. Pastikan koneksi internet Anda lancar.");
+      }
+    } finally {
+      setIsVoting(false);
     }
   };
 
@@ -676,10 +685,19 @@ export const Page = React.forwardRef((props, ref) => {
             </div>
             
             <button 
+              disabled={isVoting}
               onClick={handleVote}
-              className={`w-full py-2 md:py-3 font-black text-sm md:text-base uppercase tracking-widest transition-all active:translate-y-1 active:translate-x-1 cursor-pointer z-50 mt-auto ${theme.buttonClass}`}
+              className={`w-full py-2 md:py-3 font-black text-sm md:text-base uppercase tracking-widest transition-all cursor-pointer z-50 mt-auto 
+                ${theme.buttonClass} 
+                ${isVoting ? 'opacity-70 cursor-not-allowed scale-95' : 'active:translate-y-1 active:translate-x-1'}
+              `}
             >
-              Cast Vote
+              {isVoting ? (
+                <span className="flex items-center justify-center gap-2">
+                  <span className="animate-spin inline-block w-4 h-4 border-2 border-current border-t-transparent rounded-full"></span>
+                  VOTING...
+                </span>
+              ) : "Cast Vote"}
             </button>
           </div>
         </div>
