@@ -79,7 +79,7 @@ const getSubjectTheme = (subject) => {
         </>
       ),
       // Completely transparent container, lifted up (-mt-16)
-      glassClass: 'bg-transparent border-none shadow-none z-10 m-6 -mt-6 pt-0 flex flex-col grow gap-1',
+      glassClass: 'bg-transparent border-none shadow-none z-10 m-6 -mt-0 pt-0 flex flex-col grow gap-1',
       
       // Glitch Effect Typography (Cyan with Magenta shadow)
       nameClass: 'text-[#22d3ee] font-mono font-black text-4xl uppercase tracking-tighter drop-shadow-[3px_3px_0_rgba(217,70,239,0.8)] leading-none',
@@ -127,7 +127,7 @@ const getSubjectTheme = (subject) => {
         </>
       ),
       // THE CONTAINER: Lifted high, zero background so the collage bleeds through
-      glassClass: 'bg-transparent border-none shadow-none z-10 m-6 -mt-6 pt-0 flex flex-col grow gap-2',
+      glassClass: 'bg-transparent border-none shadow-none z-10 m-6 -mt-4 pt-0 flex flex-col grow gap-2',
       
       // UNIQUE TEXT: "Yellow Highlighter" effect to make the name survive the crowded background
       nameClass: 'text-black font-serif font-black text-4xl tracking-tighter w-fit px-2 leading-none bg-[#fef08a] shadow-[-6px_4px_0_rgba(0,0,0,0.8)] -rotate-1',
@@ -166,7 +166,7 @@ const getSubjectTheme = (subject) => {
         </>
       ),
       // THE FIX: Added -mt-16 to pull the text up and pt-0 to remove top padding
-      glassClass: 'bg-transparent border-none shadow-none z-10 m-6 -mt-5 pt-0 flex flex-col grow gap-1',
+      glassClass: 'bg-transparent border-none shadow-none z-10 m-6 -mt-1 pt-0 flex flex-col grow gap-1',
 
       // Sizing and Shadow for readability
       nameClass: 'text-[#fcd34d] font-serif font-black text-4xl tracking-wide drop-shadow-[0_4px_4px_rgba(0,0,0,0.8)]',
@@ -222,7 +222,7 @@ const getSubjectTheme = (subject) => {
         </>
       ),
       // THE CONTAINER: Lifted high (-mt-16), completely transparent
-      glassClass: 'bg-transparent border-none shadow-none z-10 m-6 -mt-9 pt-0 flex flex-col grow gap-1',
+      glassClass: 'bg-transparent border-none shadow-none z-10 m-6 -mt-5 pt-0 flex flex-col grow gap-1',
       
       // UNIQUE TEXT: "Athletic Speed" Font. 
       // Skewed (leaning forward) to look fast, white with a deep red shadow.
@@ -278,7 +278,7 @@ const getSubjectTheme = (subject) => {
         </>
       ),
       // Lifted, transparent (no box)
-      glassClass: 'bg-transparent border-none shadow-none z-10 m-6 -mt-5 pt-0 flex flex-col grow gap-1',
+      glassClass: 'bg-transparent border-none shadow-none z-10 m-6 -mt-1 pt-0 flex flex-col grow gap-1',
       
       // UNIQUE TEXT: Glowing Neon Cyan
       nameClass: 'text-[#22d3ee] font-sans font-black text-4xl uppercase tracking-tighter drop-shadow-[0_0_15px_rgba(34,211,238,0.7)] leading-none',
@@ -337,7 +337,7 @@ const getSubjectTheme = (subject) => {
         </>
       ),
       // Lifted (-mt-16) and completely transparent
-      glassClass: 'bg-transparent border-none shadow-none z-10 m-6 -mt-7 pt-0 flex flex-col grow gap-1',
+      glassClass: 'bg-transparent border-none shadow-none z-10 m-6 -mt-3 pt-0 flex flex-col grow gap-1',
       
       // UNIQUE TEXT: Now Bright Antique Gold with a hard black shadow so it pops off the dark background
       nameClass: 'text-[#fbbf24] font-serif font-black text-4xl uppercase tracking-tighter drop-shadow-[4px_4px_0_rgba(0,0,0,1)] leading-none',
@@ -385,7 +385,7 @@ const getSubjectTheme = (subject) => {
         </>
       ),
       // Container: Elevated, transparent
-      glassClass: 'bg-transparent border-none shadow-none z-10 m-6 -mt-5 pt-0 flex flex-col grow gap-1',
+      glassClass: 'bg-transparent border-none shadow-none z-10 m-6 -mt-1 pt-0 flex flex-col grow gap-1',
       
       // UNIQUE TEXT: Brilliant Gold Serif with a deep green shadow
       nameClass: 'text-[#fde68a] font-serif font-black text-4xl tracking-tight drop-shadow-[0_4px_4px_rgba(2,44,34,1)] leading-none',
@@ -434,7 +434,7 @@ const getSubjectTheme = (subject) => {
         </>
       ),
       // Container: Elevated, transparent
-      glassClass: 'bg-transparent border-none shadow-none z-10 m-6 -mt-7 pt-0 flex flex-col grow gap-1',
+      glassClass: 'bg-transparent border-none shadow-none z-10 m-6 -mt-5 pt-0 flex flex-col grow gap-1',
       
       // UNIQUE TEXT: Stark White, heavy block letters with a dark shadow
       nameClass: 'text-white font-sans font-black text-5xl uppercase italic tracking-tighter drop-shadow-[4px_4px_0_rgba(0,0,0,0.8)] leading-none',
@@ -444,7 +444,7 @@ const getSubjectTheme = (subject) => {
       imageBorder: 'border-[8px] border-white bg-black p-1 shadow-[10px_10px_0_rgba(0,0,0,0.5)] z-10 m-6 mb-2 rotate-2 hover:-rotate-1 transition-transform duration-500',
       
       // UNIQUE BUTTON: Bold Red and White contrast
-      buttonClass: 'mt-auto mb-6 bg-white text-[#991b1b] font-black italic border-[4px] border-black hover:bg-black hover:text-white hover:border-black active:translate-y-1 shadow-[6px_6px_0_rgba(0,0,0,1)] hover:shadow-none transition-all py-3 tracking-widest uppercase',
+      buttonClass: 'mt-auto mb-0 bg-white text-[#991b1b] font-black italic border-[4px] border-black hover:bg-black hover:text-white hover:border-black active:translate-y-1 shadow-[6px_6px_0_rgba(0,0,0,1)] hover:shadow-none transition-all py-3 tracking-widest uppercase',
       icon: '🦅' // Eagle/Garuda icon
     };
   }
@@ -482,7 +482,7 @@ const getSubjectTheme = (subject) => {
         </>
       ),
       // Container: Elevated, transparent
-      glassClass: 'bg-transparent border-none shadow-none z-10 m-6 -mt-7 pt-0 flex flex-col grow gap-1',
+      glassClass: 'bg-transparent border-none shadow-none z-10 m-6 -mt-0 pt-0 flex flex-col grow gap-1',
       
       // UNIQUE TEXT: Vibrant Mustard Yellow with deep brown shadow
       nameClass: 'text-[#fcd34d] font-serif font-black text-4xl uppercase tracking-wider drop-shadow-[2px_4px_0_rgba(69,26,3,1)] leading-none',
@@ -542,7 +542,7 @@ const getSubjectTheme = (subject) => {
         </>
       ),
       // Container: Elevated, transparent (No Box)
-      glassClass: 'bg-transparent border-none shadow-none z-10 m-6 -mt-6 pt-0 flex flex-col grow gap-1',
+      glassClass: 'bg-transparent border-none shadow-none z-10 m-6 -mt-3 pt-0 flex flex-col grow gap-1',
       
       // UNIQUE TEXT: Soft Rose-Pink with a glowing psychological aura
       nameClass: 'text-[#fbcfe8] font-serif font-black text-4xl tracking-tight drop-shadow-[0_0_12px_rgba(244,114,182,0.5)] leading-none',
@@ -555,7 +555,7 @@ const getSubjectTheme = (subject) => {
       imageBorder: 'border-[6px] border-[#fbcfe8] bg-[#312e81] p-1.5 shadow-[0_20px_40px_rgba(0,0,0,0.5)] z-10 m-6 mb-2 rounded-[2rem] hover:rounded-xl transition-all duration-500',
       
       // UNIQUE BUTTON: "Open Door" Ghost Button
-      buttonClass: 'mt-auto mb-6 bg-transparent text-[#fbcfe8] font-sans font-bold border-[2px] border-[#fbcfe8] hover:bg-[#fbcfe8] hover:text-[#1e1b4b] hover:shadow-[0_0_20px_rgba(244,114,182,0.6)] active:scale-95 transition-all py-3 tracking-widest uppercase rounded-full',
+      buttonClass: 'mt-auto mb-1 bg-transparent text-[#fbcfe8] font-sans font-bold border-[2px] border-[#fbcfe8] hover:bg-[#fbcfe8] hover:text-[#1e1b4b] hover:shadow-[0_0_20px_rgba(244,114,182,0.6)] active:scale-95 transition-all py-3 tracking-widest uppercase rounded-full',
       icon: '🧠' // Brain icon (or you could use 🌱 for growth)
     };
   }
@@ -670,7 +670,7 @@ export const Page = React.forwardRef((props, ref) => {
              <img 
                 src={props.image} 
                 alt={props.name} 
-                className="w-full h-full object-cover border-4 border-black grayscale group-hover:grayscale-0 transition-all duration-500" 
+                className="w-full h-full object-cover border-4 border-black transition-all duration-500" 
               />
           </div>
           
