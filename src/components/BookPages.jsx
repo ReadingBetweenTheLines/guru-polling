@@ -5,6 +5,7 @@ import { doc, getDoc, setDoc } from "firebase/firestore";
 import garudaImg from '../assets/images/garuda.jpg';
 import ragaImg from '../assets/images/olahraga.jpg';
 import inggrisImg from '../assets/images/inggris.avif';
+import indonesiaImg from '../assets/images/indonesia.jpg';
 
 // --- THE FOOLPROOF THEME ENGINE ---
 const getSubjectTheme = (subject) => {
@@ -101,7 +102,7 @@ const getSubjectTheme = (subject) => {
   }
   
   // 3. BAHASA INGGRIS & LITERATURE -> "The Editor's Collage"
-  else if (lowerSub.match(/(inggris|english|bahasa|sastra|literature|writing|poetry)/)) {
+  else if (lowerSub.match(/(inggris|english|sastra|literature|writing|poetry)/)) {
     return {
       Background: () => (
         <>
@@ -591,6 +592,62 @@ const getSubjectTheme = (subject) => {
       // UNIQUE BUTTON: "Open Door" Ghost Button
       buttonClass: 'mt-auto mb-1 bg-transparent text-[#fbcfe8] font-sans font-bold border-[2px] border-[#fbcfe8] hover:bg-[#fbcfe8] hover:text-[#1e1b4b] hover:shadow-[0_0_20px_rgba(244,114,182,0.6)] active:scale-95 transition-all py-3 tracking-widest uppercase rounded-full',
       icon: '🧠' // Brain icon (or you could use 🌱 for growth)
+    };
+  }
+
+  // 12. BAHASA INDONESIA -> "The Sastra & Ink" (No Box, Floating Typography + Image)
+  else if (lowerSub.match(/(indonesia|indo)/)) {
+    return {
+      Background: () => (
+        <>
+          {/* Crisp warm manuscript paper base */}
+          <div className="absolute inset-0 bg-[#fafaf9] z-0"></div>
+
+          {/* LAYER 1.5: The Sastra Image Background (Watermark) */}
+          <div 
+            className="absolute inset-0 z-0 opacity-85 pointer-events-none "
+            style={{
+              // REPLACE THIS URL with your actual image path! (e.g., batik, old manuscript, etc.)
+              backgroundImage: `url(${indonesiaImg})`, 
+              backgroundPosition: 'center',
+              backgroundSize: 'cover',
+              backgroundRepeat: 'no-repeat'
+            }}
+          ></div>
+
+          {/* LAYER 1: Sumpah Pemuda & Sastra Watermark Text */}
+          <div className="absolute inset-0 z-0 opacity-[0.08] font-serif text-[10px] leading-relaxed p-4 columns-3 overflow-hidden pointer-events-none text-black text-justify">
+             {Array(20).fill("Kami putra dan putri Indonesia, menjunjung bahasa persatuan, bahasa Indonesia. Membaca adalah melawan. Bahasa menunjukkan bangsa. ").join("")}
+          </div>
+
+          {/* LAYER 2: Giant Ink Typography */}
+          <div className="absolute top-1/4 -right-10 opacity-[0.04] font-serif font-black text-[150px] text-black pointer-events-none leading-none rotate-12">
+             SASTRA
+          </div>
+          <div className="absolute bottom-10 -left-10 opacity-[0.03] font-serif italic font-black text-[120px] text-black pointer-events-none leading-none -rotate-6">
+             Puisi
+          </div>
+
+          {/* LAYER 3: Subtle Crimson Red Ink Splatters (Abstract) */}
+          <div className="absolute top-10 right-10 w-20 h-20 bg-[#dc2626] opacity-10 rounded-full blur-[20px] pointer-events-none"></div>
+          <div className="absolute bottom-1/3 left-0 w-32 h-32 bg-[#dc2626] opacity-[0.05] rounded-full blur-[30px] pointer-events-none"></div>
+        </>
+      ),
+      // ZERO BOX. Completely transparent container, flex layout only.
+      glassClass: 'bg-transparent border-none shadow-none z-10 m-6 -mt-2 pt-0 flex flex-col grow gap-1',
+
+      // UNIQUE TEXT: Dictionary Headword style. Thick serif, black, floating directly on paper.
+      nameClass: 'text-black font-serif font-black text-3xl tracking-tighter drop-shadow-[2px_2px_0_#fff,3px_3px_0_rgba(0,0,0,0.1)] leading-none mt-2',
+
+      // UNIQUE SUB-TEXT: Typewriter style, striking Crimson red, NO background box.
+      fontClass: 'text-[#dc2626] font-mono font-bold uppercase text-[11px] tracking-[0.3em] mt-1 drop-shadow-[1px_1px_0_#fff]',
+
+      // UNIQUE IMAGE: "Polaroid / Printed Photo" effect. 
+      imageBorder: 'border-x-[8px] border-t-[8px] border-b-[24px] border-white bg-white shadow-[0_20px_30px_rgba(0,0,0,0.2)] z-10 m-6 mb-0 rotate-2 hover:rotate-0 transition-transform duration-500 sepia-[0.3]',
+
+      // UNIQUE BUTTON: Ink stamp look. Solid black, crisp white text, crimson shadow.
+      buttonClass: 'mt-auto mb-6 bg-black text-[#fafaf9] font-serif font-bold border-2 border-black hover:bg-transparent hover:text-black active:translate-y-1 shadow-[5px_5px_0_#dc2626] hover:shadow-none transition-all py-3 tracking-widest uppercase',
+      icon: '✒️' // Fountain pen icon
     };
   }
 

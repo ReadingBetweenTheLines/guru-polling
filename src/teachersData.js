@@ -28,7 +28,7 @@ export const teachersData = [
   { name: "Choirunnisa Nasution/ CN", subject: "Matematika", color: "#c890ff", image: buCNImg },
   { name: "Yudha Permana/YP", subject: "Matematika", color: "#ff90e8", image: pakYpImg },
   { name: "Syahdina ELbi/ DI", subject: "Ilmu Pengetahuan Alam", color: "#23f0ff", image: buDiImg },
-  { name: "Yulia Handayani/ YH", subject: "Mathematics", color: "#b4ff39", image: buYhImg },
+  { name: "Yulia Handayani/ YH", subject: "Bahasa Indonesia", color: "#b4ff39", image: buYhImg },
   { name: "Bariati/ BR", subject: "Bahasa Inggris", color: "#ff5e5e", image: buBrImg },
   { name: "Wanoto/ WT", subject: "Bahasa Inggris", color: "#ffc900", image: pakWtImg },
   { name: "dian Rachmasari/ DM", subject: "Bahasa Inggris", color: "#c890ff", image: buDmImg },
