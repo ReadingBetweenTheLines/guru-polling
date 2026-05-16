@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { signInWithPopup } from "firebase/auth";
 import { auth, googleProvider, db } from "../firebase";
 import { doc, getDoc, setDoc } from "firebase/firestore";
+import garudaImg from '../assets/images/garuda.jpg';
+import ragaImg from '../assets/images/olahraga.jpg';
+import inggrisImg from '../assets/images/inggris.avif';
 
 // --- THE FOOLPROOF THEME ENGINE ---
 const getSubjectTheme = (subject) => {
@@ -40,7 +43,7 @@ const getSubjectTheme = (subject) => {
         );
       },
       glassClass: 'bg-transparent pt-4 z-10 m-3 mb-4', 
-      nameClass: 'text-blue-950 font-serif text-3xl font-black tracking-tight', 
+      nameClass: 'text-blue-950 font-serif text-2xl font-black tracking-tight', 
       fontClass: 'font-mono font-bold text-blue-800 tracking-tight border-blue-900/30',
       imageBorder: 'border-[4px] border-blue-950 shadow-[4px_4px_0px_rgba(23,37,84,0.15)] z-10 m-3 mt-4 bg-white', 
       buttonClass: 'bg-blue-900 text-white border-2 border-blue-950 hover:bg-blue-700 shadow-[4px_4px_0px_rgba(23,37,84,0.3)] hover:shadow-none transition-all mt-2',
@@ -97,7 +100,7 @@ const getSubjectTheme = (subject) => {
     };
   }
   
-  // 3. BAHASA INGGRIS & LITERATURE -> "The Editor's Collage" (High Density)
+  // 3. BAHASA INGGRIS & LITERATURE -> "The Editor's Collage"
   else if (lowerSub.match(/(inggris|english|bahasa|sastra|literature|writing|poetry)/)) {
     return {
       Background: () => (
@@ -105,6 +108,18 @@ const getSubjectTheme = (subject) => {
           {/* Gritty Newspaper/Old Book Paper Base */}
           <div className="absolute inset-0 bg-[#ebe6d8] z-0"></div>
           
+          {/* LAYER 1.5: The Literature Image Background (Watermark) */}
+          <div 
+            className="absolute inset-0 z-0 opacity-80% pointer-events-none"
+            style={{
+              // REPLACE THIS URL with your actual image path! (e.g., typewriter or old manuscript)
+              backgroundImage: `url(${inggrisImg})`, 
+              backgroundPosition: 'center',
+              backgroundSize: 'cover',
+              backgroundRepeat: 'no-repeat'
+            }}
+          ></div>
+
           {/* LAYER 1: Dense, crowded background text columns */}
           <div className="absolute inset-0 z-0 opacity-[0.15] font-serif text-[8px] leading-tight p-2 columns-4 md:columns-5 text-justify wrap-break-word overflow-hidden pointer-events-none text-black">
             {Array(40).fill("Language is the road map of a culture. It tells you where its people come from and where they are going. Grammar is the structural foundation of our ability to express ourselves. ").join("")}
@@ -127,10 +142,10 @@ const getSubjectTheme = (subject) => {
         </>
       ),
       // THE CONTAINER: Lifted high, zero background so the collage bleeds through
-      glassClass: 'bg-transparent border-none shadow-none z-10 m-6 -mt-4 pt-0 flex flex-col grow gap-2',
+      glassClass: 'bg-transparent border-none shadow-none z-10 m-6 -mt-2 pt-0 flex flex-col grow gap-2',
       
       // UNIQUE TEXT: "Yellow Highlighter" effect to make the name survive the crowded background
-      nameClass: 'text-black font-serif font-black text-4xl tracking-tighter w-fit px-2 leading-none bg-[#fef08a] shadow-[-6px_4px_0_rgba(0,0,0,0.8)] -rotate-1',
+      nameClass: 'text-black font-serif font-black text-2xl tracking-tighter w-fit px-2 leading-none bg-[#fef08a] shadow-[-6px_4px_0_rgba(0,0,0,0.8)] -rotate-1',
       
       // UNIQUE SUB-TEXT: Black marker box with white text
       fontClass: 'font-mono font-bold text-white bg-black w-fit uppercase text-[10px] tracking-[0.2em] px-2 py-1 mt-1 -rotate-1 shadow-[4px_4px_0_rgba(0,0,0,0.3)]',
@@ -169,7 +184,7 @@ const getSubjectTheme = (subject) => {
       glassClass: 'bg-transparent border-none shadow-none z-10 m-6 -mt-1 pt-0 flex flex-col grow gap-1',
 
       // Sizing and Shadow for readability
-      nameClass: 'text-[#fcd34d] font-serif font-black text-4xl tracking-wide drop-shadow-[0_4px_4px_rgba(0,0,0,0.8)]',
+      nameClass: 'text-[#fcd34d] font-serif font-black text-3xl tracking-wide drop-shadow-[0_4px_4px_rgba(0,0,0,0.8)]',
       fontClass: 'font-sans font-bold uppercase text-[11px] tracking-[0.25em] text-amber-200/90 border-none mt-0',
 
       // THE FIX: Reduced mb-2 to stop pushing the text down
@@ -180,7 +195,7 @@ const getSubjectTheme = (subject) => {
     };
   }
 
-  // 5. PJOK / OLAHRAGA -> "The Olympic Track & Vitality" (High Density, Sport/Health Focus)
+  // 5. PJOK / OLAHRAGA -> "The Olympic Track & Vitality"
   else if (lowerSub.match(/(jasmani|olahraga|kesehatan|physical|health|gym|sports)/)) {
     return {
       Background: () => (
@@ -188,14 +203,26 @@ const getSubjectTheme = (subject) => {
           {/* Base: Classic Running Track Red */}
           <div className="absolute inset-0 bg-[#b91c1c] z-0"></div>
 
+          {/* LAYER 1.5: The Sports Image Background (Watermark) */}
+          <div 
+            className="absolute inset-0 z-0 opacity-60% pointer-events-none"
+            style={{
+              // REPLACE THIS URL with your actual image path!
+              backgroundImage: `url(${ragaImg })`, 
+              backgroundPosition: 'center',
+              backgroundSize: 'cover', // 'cover' makes it fill the whole screen
+              backgroundRepeat: 'no-repeat'
+            }}
+          ></div>
+
           {/* LAYER 1: Giant Faded Fitness & Sports Stats */}
-          <div className="absolute -left-12 top-4 opacity-[0.15] font-mono font-black text-[120px] italic text-white pointer-events-none leading-none -rotate-6">
+          <div className="absolute -left-12 top-4 opacity-[0.25] font-mono font-black text-[120px] italic text-white pointer-events-none leading-none -rotate-6">
             145 BPM
           </div>
-          <div className="absolute -right-20 bottom-20 opacity-[0.1] font-sans font-black text-[180px] italic text-white pointer-events-none leading-none rotate-3">
+          <div className="absolute -right-20 bottom-20 opacity-[0.15] font-sans font-black text-[180px] italic text-white pointer-events-none leading-none rotate-3">
             00:59
           </div>
-          <div className="absolute left-1/4 top-1/3 opacity-[0.05] font-sans font-black text-[150px] uppercase italic text-white pointer-events-none leading-none -rotate-12">
+          <div className="absolute left-1/4 top-1/3 opacity-[0.1] font-sans font-black text-[150px] uppercase italic text-white pointer-events-none leading-none -rotate-12">
             Sprint
           </div>
 
@@ -222,17 +249,15 @@ const getSubjectTheme = (subject) => {
         </>
       ),
       // THE CONTAINER: Lifted high (-mt-16), completely transparent
-      glassClass: 'bg-transparent border-none shadow-none z-10 m-6 -mt-5 pt-0 flex flex-col grow gap-1',
+      glassClass: 'bg-transparent border-none shadow-none z-10 m-6 -mt-2 pt-0 flex flex-col grow gap-1',
       
       // UNIQUE TEXT: "Athletic Speed" Font. 
-      // Skewed (leaning forward) to look fast, white with a deep red shadow.
-      nameClass: 'text-white font-sans font-black text-5xl uppercase italic tracking-tighter drop-shadow-[4px_4px_0_#7f1d1d] transform -skew-x-6 w-fit leading-none',
+      nameClass: 'text-white font-sans font-black text-3xl uppercase italic tracking-tighter drop-shadow-[4px_4px_0_#7f1d1d] transform -skew-x-6 w-fit leading-none',
       
       // UNIQUE SUB-TEXT: High-visibility neon yellow, looks like sports apparel branding
       fontClass: 'bg-[#fde047] text-black font-sans font-black uppercase text-[11px] tracking-[0.2em] px-3 py-1 shadow-[4px_4px_0_#7f1d1d] w-fit mt-2 transform -skew-x-6',
       
       // UNIQUE IMAGE: Clean, dynamic sports magazine layout. 
-      // Bright white border with a neon green inner accent.
       imageBorder: 'border-[8px] border-white bg-[#4ade80] p-1 shadow-[0_20px_30px_rgba(0,0,0,0.4)] z-10 m-6 mb-2 rotate-2 hover:-rotate-1 transition-transform duration-500',
       
       // UNIQUE BUTTON: Action stopwatch aesthetic.
@@ -337,10 +362,10 @@ const getSubjectTheme = (subject) => {
         </>
       ),
       // Lifted (-mt-16) and completely transparent
-      glassClass: 'bg-transparent border-none shadow-none z-10 m-6 -mt-3 pt-0 flex flex-col grow gap-1',
+      glassClass: 'bg-transparent border-none shadow-none z-10 m-6 -mt-2 pt-0 flex flex-col grow gap-1',
       
       // UNIQUE TEXT: Now Bright Antique Gold with a hard black shadow so it pops off the dark background
-      nameClass: 'text-[#fbbf24] font-serif font-black text-4xl uppercase tracking-tighter drop-shadow-[4px_4px_0_rgba(0,0,0,1)] leading-none',
+      nameClass: 'text-[#fbbf24] font-serif font-black text-3xl uppercase tracking-tighter drop-shadow-[4px_4px_0_rgba(0,0,0,1)] leading-none',
       
       // UNIQUE SUB-TEXT: Dark leather box with gold text
       fontClass: 'bg-[#451a03] text-[#fbbf24] font-serif font-bold uppercase text-[10px] tracking-[0.2em] px-2 py-0.5 w-fit mt-1 border border-[#fbbf24] shadow-[3px_3px_0_rgba(0,0,0,1)]',
@@ -388,7 +413,7 @@ const getSubjectTheme = (subject) => {
       glassClass: 'bg-transparent border-none shadow-none z-10 m-6 -mt-1 pt-0 flex flex-col grow gap-1',
       
       // UNIQUE TEXT: Brilliant Gold Serif with a deep green shadow
-      nameClass: 'text-[#fde68a] font-serif font-black text-4xl tracking-tight drop-shadow-[0_4px_4px_rgba(2,44,34,1)] leading-none',
+      nameClass: 'text-[#fde68a] font-serif font-black text-3xl tracking-tight drop-shadow-[0_4px_4px_rgba(2,44,34,1)] leading-none',
       fontClass: 'text-[#34d399] font-sans font-bold uppercase text-[11px] tracking-[0.25em] mt-1 drop-shadow-md',
       
       // UNIQUE IMAGE: Ornate "Arch" or manuscript frame (Gold and Dark Green)
@@ -400,7 +425,7 @@ const getSubjectTheme = (subject) => {
     };
   }
 
-  // 9. PENDIDIKAN KEWARGANEGARAAN (PKN) -> "The Patriot's Canvas" (High Density)
+  // 9. PENDIDIKAN KEWARGANEGARAAN (PKN) -> "The Patriot's Canvas"
   else if (lowerSub.match(/(kewarganegaraan|pkn|pancasila|civic|ppkn)/)) {
     return {
       Background: () => (
@@ -408,36 +433,45 @@ const getSubjectTheme = (subject) => {
           {/* Deep Crimson Base */}
           <div className="absolute inset-0 bg-[#7f1d1d] z-0"></div>
 
-          {/* LAYER 1: Dense Constitutional Text */}
-          <div className="absolute inset-0 z-0 opacity-10 font-serif text-[8px] leading-tight p-2 columns-4 overflow-hidden pointer-events-none text-white text-justify">
+          {/* THE FIX: A soft, warm glowing halo behind the Garuda to protect its colors */}
+          <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
+            <div className="w-80 h-80 bg-[#fde68a] opacity-30 blur-[60px] rounded-full"></div>
+          </div>
+
+          {/* LAYER 1: Giant Garuda Pancasila - True Colors */}
+          {/* Removed mix-blend-overlay and bumped opacity to 60% so the natural gold/green/white shows */}
+          <div 
+            className="absolute inset-0 z-0 opacity-60 pointer-events-none"
+            style={{
+              backgroundImage: `url(${garudaImg})`,
+              backgroundPosition: 'center',
+              backgroundSize: '140%', 
+              backgroundRepeat: 'no-repeat'
+            }}
+          ></div>
+
+          {/* LAYER 2: Dense Constitutional Text Overlay */}
+          <div className="absolute inset-0 z-0 opacity-[0.06] font-serif text-[8px] leading-tight p-2 columns-4 overflow-hidden pointer-events-none text-white text-justify">
              {Array(20).fill("Bahwa sesungguhnya Kemerdekaan itu ialah hak segala bangsa dan oleh sebab itu, maka penjajahan di atas dunia harus dihapuskan. ").join("")}
           </div>
 
-          {/* LAYER 2: Giant Nationalism Typographic Elements */}
+          {/* LAYER 3: Nationalism Typographic Elements */}
           <div className="absolute top-10 -left-10 opacity-[0.08] font-black text-[120px] italic text-white pointer-events-none leading-none -rotate-6">
             1945
           </div>
           <div className="absolute bottom-20 -right-20 opacity-[0.05] font-black text-[100px] text-white pointer-events-none leading-none rotate-12">
             PANCASILA
           </div>
-          <div className="absolute top-1/2 left-4 opacity-20 font-black text-5xl text-white pointer-events-none leading-none rotate-90">
-            NKRI
-          </div>
 
-          {/* LAYER 3: Abstract Geometric Shards (Red & White) */}
-          <div className="absolute inset-0 z-0 opacity-20 pointer-events-none">
-            <svg width="100%" height="100%">
-              <path d="M 0 0 L 200 600 L 220 600 L 20 0 Z" fill="white" />
-              <path d="M 100 0 L 300 800 L 310 800 L 110 0 Z" fill="white" opacity="0.5" />
-            </svg>
-          </div>
+          {/* LAYER 4: Soft Edge Gradient to frame the page */}
+          <div className="absolute inset-0 z-0 shadow-[inset_0_0_100px_rgba(127,29,29,0.8)] pointer-events-none"></div>
         </>
       ),
       // Container: Elevated, transparent
-      glassClass: 'bg-transparent border-none shadow-none z-10 m-6 -mt-5 pt-0 flex flex-col grow gap-1',
+      glassClass: 'bg-transparent border-none shadow-none z-10 m-6 -mt-2 pt-0 flex flex-col grow gap-1',
       
       // UNIQUE TEXT: Stark White, heavy block letters with a dark shadow
-      nameClass: 'text-white font-sans font-black text-5xl uppercase italic tracking-tighter drop-shadow-[4px_4px_0_rgba(0,0,0,0.8)] leading-none',
+      nameClass: 'text-white font-sans font-black text-3xl uppercase italic tracking-tighter drop-shadow-[4px_4px_0_rgba(0,0,0,0.8)] leading-none',
       fontClass: 'bg-white text-[#991b1b] font-black uppercase text-[11px] tracking-[0.3em] px-2 py-0.5 mt-1 w-fit shadow-[4px_4px_0_rgba(0,0,0,0.8)] -rotate-1',
       
       // UNIQUE IMAGE: "Official Document" stamp look. Thick white/black border.
@@ -482,10 +516,10 @@ const getSubjectTheme = (subject) => {
         </>
       ),
       // Container: Elevated, transparent
-      glassClass: 'bg-transparent border-none shadow-none z-10 m-6 -mt-0 pt-0 flex flex-col grow gap-1',
+      glassClass: 'bg-transparent border-none shadow-none z-10 m-6 -mt-3 pt-0 flex flex-col grow gap-1',
       
       // UNIQUE TEXT: Vibrant Mustard Yellow with deep brown shadow
-      nameClass: 'text-[#fcd34d] font-serif font-black text-4xl uppercase tracking-wider drop-shadow-[2px_4px_0_rgba(69,26,3,1)] leading-none',
+      nameClass: 'text-[#fcd34d] font-serif font-black text-3xl uppercase tracking-wider drop-shadow-[2px_4px_0_rgba(69,26,3,1)] leading-none',
       fontClass: 'text-[#fef3c7] font-sans font-bold uppercase text-[11px] tracking-[0.3em] mt-1 bg-[#451a03] w-fit px-2 py-0.5 rounded-sm shadow-[2px_2px_0_rgba(0,0,0,0.5)]',
       
       // UNIQUE IMAGE: "Carved Wood" Frame aesthetic
@@ -542,10 +576,10 @@ const getSubjectTheme = (subject) => {
         </>
       ),
       // Container: Elevated, transparent (No Box)
-      glassClass: 'bg-transparent border-none shadow-none z-10 m-6 -mt-3 pt-0 flex flex-col grow gap-1',
+      glassClass: 'bg-transparent border-none shadow-none z-10 m-6 -mt-1 pt-0 flex flex-col grow gap-1',
       
       // UNIQUE TEXT: Soft Rose-Pink with a glowing psychological aura
-      nameClass: 'text-[#fbcfe8] font-serif font-black text-4xl tracking-tight drop-shadow-[0_0_12px_rgba(244,114,182,0.5)] leading-none',
+      nameClass: 'text-[#fbcfe8] font-serif font-black text-3xl tracking-tight drop-shadow-[0_0_12px_rgba(244,114,182,0.5)] leading-none',
       
       // UNIQUE SUB-TEXT: Deep Indigo pill-shape to contrast the glowing name
       fontClass: 'bg-[#fbcfe8] text-[#1e1b4b] font-sans font-bold uppercase text-[10px] tracking-[0.25em] px-3 py-1 rounded-full w-fit mt-1 shadow-[0_4px_10px_rgba(0,0,0,0.4)]',
