@@ -12,7 +12,6 @@ import buNaImg from './assets/images/bu_na.jpeg';
 import buYhImg from './assets/images/bu_yh.jpeg';
 import buDmImg from './assets/images/bu_dm.jpeg';
 import buBrImg from './assets/images/bu_br.jpeg';
-import PABImg from './assets/images/PAB.png';
 import pakWtImg from './assets/images/pak_wt.jpeg';
 import pakSpImg from './assets/images/pak_sp.jpeg';
 import buDyImg from './assets/images/bu_dy.jpeg';
@@ -24,7 +23,6 @@ export const teachersData = [
   { name: "Andayani Sinulingga/ AY", subject: "Seni Budaya", color: "#b4ff39", image: buayImg },
   { name: "Sahala Bancin/ SB", subject: "Pengetahuan Agama Islam", color: "#ff90e8", image: pakSbImg },
   { name: "Nurul Syampuaddah/ NS", subject: "Pendidikan Kewarganegaraan", color: "#23f0ff", image: buNsImg },
-  { name: "Fatimah Khoiroh/ FK", subject: "Matematika", color: "#ffc900", image: PABImg },
   { name: "Choirunnisa Nasution/ CN", subject: "Matematika", color: "#c890ff", image: buCNImg },
   { name: "Yudha Permana/YP", subject: "Matematika", color: "#ff90e8", image: pakYpImg },
   { name: "Syahdina ELbi/ DI", subject: "Ilmu Pengetahuan Alam", color: "#23f0ff", image: buDiImg },
@@ -34,8 +32,8 @@ export const teachersData = [
   { name: "dian Rachmasari/ DM", subject: "Bahasa Inggris", color: "#c890ff", image: buDmImg },
   { name: "Najla Aqil Hidayat/ NA", subject: "Pendidikan Jasmani, Olahraga dan Kesehatan", color: "#ff90e8", image: buNaImg },
   { name: "Suprapto/ SP", subject: "Pendidikan Jasmani, Olahraga dan Kesehatan", color: "#23f0ff", image: pakSpImg },
-  { name: "Diajeng Ayu Larasati/ DY", subject: "Pendidikan Pancasila", color: "#b4ff39", image: buDyImg },
   { name: "Indah Putri Yuniza/ NZ", subject: "Teknologi Informasi dan Komunikasi", color: "#ffc900", image: buNzImg },
   { name: "Regatta Yudistira/ RG", subject: "Teknologi Informasi dan Komunikasi", color: "#c890ff", image: pakRgImg },
+  { name: "Diajeng Ayu Larasati/ DY", subject: "Pendidikan Pancasila", color: "#b4ff39", image: buDyImg },
   { name: "Yudi Rizki Pratama / YD", subject: "Muatan Lokal", color: "#ff5e5e", image: pakYdImg }
 ];
