@@ -6,30 +6,57 @@ import { PageCover, Page, ClosingPage } from './components/BookPages';
 import pabImg from './assets/images/PAB.png';
 
 export default function App() {
-  // 1. Detect if the screen is taller than it is wide (portrait mode)
   const [isPortrait, setIsPortrait] = useState(window.innerHeight > window.innerWidth);
   const bookRef = useRef();
 
-  // 2. Listen for phone rotation or resizing
+  // --- NEW: CUSTOM VERTICAL SWIPE TRACKING ---
+  const [touchStartY, setTouchStartY] = useState(null);
+  const [touchEndY, setTouchEndY] = useState(null);
+
+  const handleTouchStart = (e) => {
+    if (!isPortrait) return; // Only apply on rotated mobile view
+    setTouchEndY(null); 
+    setTouchStartY(e.targetTouches[0].clientY);
+  };
+
+  const handleTouchMove = (e) => {
+    if (!isPortrait) return;
+    setTouchEndY(e.targetTouches[0].clientY);
+  };
+
+  const handleTouchEnd = () => {
+    if (!isPortrait || touchStartY === null || touchEndY === null) return;
+    
+    // Calculate how far the thumb dragged up or down
+    const distance = touchStartY - touchEndY;
+    const isUpSwipe = distance > 50;     // Swiped from bottom to top
+    const isDownSwipe = distance < -50;  // Swiped from top to bottom
+
+    if (isDownSwipe) {
+      // Swiping DOWN physically pulls the right page to the left -> NEXT PAGE
+      bookRef.current.pageFlip().flipNext();
+    } else if (isUpSwipe) {
+      // Swiping UP physically pulls the left page to the right -> PREV PAGE
+      bookRef.current.pageFlip().flipPrev();
+    }
+  };
+
   useEffect(() => {
     const handleResize = () => {
       setIsPortrait(window.innerHeight > window.innerWidth);
     };
     
-    // Run once on load
     handleResize();
-    
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // 3. THE HACK: If portrait, swap width/height and rotate -90deg. If not, act normal.
   const landscapeStyles = isPortrait ? {
     position: 'absolute',
     top: '50%',
     left: '50%',
-    width: '100dvh',  // Width takes the height of the phone
-    height: '100dvw', // Height takes the width of the phone
+    width: '100dvh',  
+    height: '100dvw', 
     transform: 'translate(-50%, -50%) rotate(-90deg)',
     transformOrigin: 'center center',
     overflow: 'hidden'
@@ -41,7 +68,6 @@ export default function App() {
   };
 
   return (
-    // 4. Replaced "h-screen w-screen relative" with our dynamic landscapeStyles
     <div className="bg-[#0A4D22] flex flex-col font-['Space_Grotesk'] selection:bg-[#F5B800] selection:text-[#0F7132]" style={landscapeStyles}>
       
       {/* PAB Logo Background Layer */}
@@ -62,27 +88,32 @@ export default function App() {
         </div>
       </div>
 
-      {/* Main Container */}
-      <main className="relative z-10 grow flex items-center justify-center p-2 w-full h-full overflow-hidden">
+      {/* Main Container - Added Capture events to hijack the touch controls */}
+      <main 
+        className="relative z-10 grow flex items-center justify-center p-2 w-full h-full overflow-hidden"
+        onTouchStartCapture={handleTouchStart}
+        onTouchMoveCapture={handleTouchMove}
+        onTouchEndCapture={handleTouchEnd}
+      >
         <HTMLFlipBook 
-          // THE FIX: We use isPortrait to shrink the dimensions drastically for mobile phones
           width={isPortrait ? 200 : 320} 
           height={isPortrait ? 260 : 420} 
-          
           size="stretch"
           minWidth={isPortrait ? 150 : 280}
           maxWidth={isPortrait ? 280 : 450} 
           minHeight={isPortrait ? 200 : 400}
           maxHeight={isPortrait ? 300 : 600} 
           
+          // THE FIX: Set swipe distance impossibly high on mobile to kill the native horizontal swipe, 
+          // allowing our custom vertical swipe to take over completely.
+          swipeDistance={isPortrait ? 9999 : 30} 
+          
           maxShadowOpacity={0.4}
           showCover={true}
           mobileScrollSupport={true}
-          
           usePortrait={false} 
           ref={bookRef}
           style={{ maxWidth: '100%', maxHeight: '100%' }}
-          // Slightly smaller shadow on mobile so it doesn't add to the width
           className={`${isPortrait ? 'shadow-[6px_6px_0px_rgba(0,0,0,1)]' : 'shadow-[12px_12px_0px_rgba(0,0,0,1)]'} mx-auto`}
         >
           <PageCover />
@@ -103,7 +134,6 @@ export default function App() {
         </HTMLFlipBook>
       </main>
 
-      {/* 5. Added global styles to prevent scrolling bugs when the screen is rotated */}
       <style dangerouslySetInnerHTML={{__html: `
         @keyframes marquee {
           0% { transform: translateX(0); }
